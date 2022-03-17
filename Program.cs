@@ -148,14 +148,16 @@ namespace NinetiesTV
         //     show that ended on or after the year 2000.
         static Show EndedFirstAfterTheMillennium(List<Show> shows)
         {
-            throw new NotImplementedException();
+            List<Show> orderedByEndingYear = shows.OrderBy(s => s.EndYear).ToList();
+            return orderedByEndingYear.FirstOrDefault(s => s.EndYear >= 2000);
         }
 
         // 17. Order the shows by rating (highest first) 
         //     and return the first show with genre of drama.
         static Show BestDrama(List<Show> shows)
         {
-            throw new NotImplementedException();
+            List<Show> highestRated = shows.OrderByDescending(s => s.ImdbRating).ToList();
+            return highestRated.FirstOrDefault(s => s.Genres.Contains("Drama"));
         }
 
         // 18. Return all dramas except for the highest rated.
