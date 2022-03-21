@@ -163,26 +163,29 @@ namespace NinetiesTV
         // 18. Return all dramas except for the highest rated.
         static List<Show> AllButBestDrama(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.Where(s => s.Genres.Contains("Drama")).OrderByDescending(s => s.ImdbRating).Skip(1).ToList();
         }
 
         // 19. Return the number of crime shows with an IMDB rating greater than 7.0.
         static int GoodCrimeShows(List<Show> shows)
         {
-            throw new NotImplementedException();
+            List<Show> GoodCrimeShows = shows.Where(s => s.Genres.Contains("Crime") && s.ImdbRating > 7.0).ToList();
+            return GoodCrimeShows.Count();
         }
 
         // 20. Return the first show that ran for more than 10 years 
         //     with an IMDB rating of less than 8.0 ordered alphabetically.
         static Show FirstLongRunningTopRated(List<Show> shows)
         {
-            throw new NotImplementedException();
+            List<Show> LongRunningAlphUnder8 = shows.Where(s => ((s.EndYear - s.StartYear) >= 10) && (s.ImdbRating < 8.0)).OrderBy(s => s.Name).ToList();
+            return LongRunningAlphUnder8.FirstOrDefault();
         }
 
         // 21. Return the show with the most words in the name.
         static Show WordieastName(List<Show> shows)
         {
-            throw new NotImplementedException();
+            List<Show> wordieastName = shows.OrderByDescending(s => s.Name.Length).ToList();
+            return wordieastName.FirstOrDefault();
         }
 
         // 22. Return the names of all shows as a single string seperated by a comma and a space.
